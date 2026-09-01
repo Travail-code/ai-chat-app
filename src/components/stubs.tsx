@@ -1,0 +1,1 @@
+export function Cursor() {\n  return null;\n}\n\nexport function Landing({ children }) {\n  return <section>{children}</section>;\n}\n\nexport function Navbar() {\n  return <nav>3D Portfolio</nav>;\n}\n\nexport function TechStack() {\n  return <section>Tech Stack</section>;\n}
