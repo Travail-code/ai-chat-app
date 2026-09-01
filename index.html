@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat - Proton Style</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span>AIChat</span>
+                </div>
+                <button class="btn-new-chat" id="newChatBtn">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="chat-history">
+                <div class="history-item active" data-chat-id="1">
+                    <span>Nouvelle conversation</span>
+                    <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button class="btn-settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Paramètres</span>
+                </button>
+                <button class="btn-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profil</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <!-- Header -->
+            <header class="chat-header">
+                <div class="header-content">
+                    <h1>Conversation avec Claude</h1>
+                    <p class="header-subtitle">Model: Claude 3.5 Sonnet</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon" title="Paramètres du chat">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                    <button class="btn-icon" title="Info">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Messages Area -->
+            <div class="messages-container" id="messagesContainer">
+                <div class="welcome-section">
+                    <div class="welcome-icon">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <h2>Bienvenue dans AIChat</h2>
+                    <p>Commencez une conversation en tapant votre message ci-dessous</p>
+                    <div class="quick-prompts">
+                        <button class="quick-prompt" onclick="setMessage('Explique-moi les concepts de la programmation asynchrone')">
+                            <i class="fas fa-code"></i>
+                            <span>Programmation asynchrone</span>
+                        </button>
+                        <button class="quick-prompt" onclick="setMessage('Donne-moi une recette de gateau au chocolat')">
+                            <i class="fas fa-utensils"></i>
+                            <span>Recette de gâteau</span>
+                        </button>
+                        <button class="quick-prompt" onclick="setMessage('Explique-moi la théorie de la relativité')">
+                            <i class="fas fa-atom"></i>
+                            <span>Relativité d\'Einstein</span>
+                        </button>
+                        <button class="quick-prompt" onclick="setMessage('Comment améliorer ma productivité?')">
+                            <i class="fas fa-rocket"></i>
+                            <span>Productivité</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <form class="chat-form" id="chatForm">
+                    <div class="input-wrapper">
+                        <textarea 
+                            id="messageInput" 
+                            class="message-input" 
+                            placeholder="Écrivez votre message... (Shift+Enter pour une nouvelle ligne)"
+                            rows="1"
+                        ></textarea>
+                        <div class="input-actions">
+                            <button type="button" class="btn-icon" title="Ajouter un fichier">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button type="submit" class="btn-send">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="input-hint">AIChat peut faire des erreurs. Vérifiez les informations importantes.</p>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Paramètres</h2>
+                <button class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label>Thème</label>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="dark">
+                            <i class="fas fa-moon"></i> Sombre
+                        </button>
+                        <button class="theme-btn" data-theme="light">
+                            <i class="fas fa-sun"></i> Clair
+                        </button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="animationToggle" checked>
+                        Activer les animations
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>Température (Créativité): <span id="tempValue">0.7</span></label>
+                    <input type="range" id="temperatureSlider" min="0" max="2" step="0.1" value="0.7">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
