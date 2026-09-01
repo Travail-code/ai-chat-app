@@ -1,0 +1,1 @@
+export default function Character() {\n  return <div>3D Character Model</div>;\n}
